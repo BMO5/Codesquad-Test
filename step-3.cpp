@@ -1,5 +1,7 @@
 #include <iostream>
 #include <string>
+#include <chrono>
+#include <iomanip>
 
 using namespace std;
 
@@ -344,12 +346,25 @@ void rotateCube_ccw(string direction, int &count)
     }
 }
 
+void printTime(chrono::system_clock::time_point startTime)
+{
+    chrono::system_clock::time_point endTime = chrono::system_clock::now();
+    chrono::minutes min = chrono::duration_cast<chrono::minutes>(endTime - startTime);
+    chrono::seconds sec = chrono::duration_cast<chrono::seconds>(endTime - startTime);
+
+    cout << "°æ°ú½Ã°£: " << setw(2) << setfill('0') << min.count() << ":";
+    cout << setw(2) << setfill('0') << sec.count() << endl;
+}
+
 int main()
 {
-    printCube();
+    chrono::system_clock::time_point startTime = chrono::system_clock::now();
+
     string input = "";
     string direction = "";
     int count = 0;
+
+    printCube();
     while (1)
     {
         cout << "CUBE> ";
@@ -357,6 +372,7 @@ int main()
 
         if (input == "Q")
         {
+            printTime(startTime);
             cout << "Á¶ÀÛ°¹¼ö: " << count << endl;
             cout << "ÀÌ¿ëÇØÁÖ¼Å¼­ °¨»çÇÕ´Ï´Ù. ¶Ñ¶Ñ¶Ñ." << endl;
             return 0;
