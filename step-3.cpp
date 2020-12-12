@@ -164,8 +164,36 @@ void rotateD(string direction)
         }
 }
 
+string checkDirection(string input, int &index)
+{
+    if (index != input.length() - 1)
+    {
+        if (input[index + 1] == '2' || input[index + 1] == '\'')
+        {
+            index++;
+            return input.substr(index - 1, 2);
+        }
+        return input.substr(index, 1);
+    }
+}
+
 int main()
 {
     printCube();
+    string input = "";
+    string direction = "";
+
+    while (1)
+    {
+        cout << "CUBE> ";
+        cin >> input;
+
+        for (int index = 0; index < input.length(); index++)
+        {
+            direction = checkDirection(input, index);
+            cout << direction << endl;
+        }
+    }
+
     return 0;
 }
