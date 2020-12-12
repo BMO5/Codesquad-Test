@@ -173,7 +173,31 @@ string checkDirection(string input, int &index)
             index++;
             return input.substr(index - 1, 2);
         }
-        return input.substr(index, 1);
+    }
+    return input.substr(index, 1);
+}
+
+void rotateCube(string direction)
+{
+    int count = 0;
+    if (direction.length() == 2)
+        if (direction[1] == '2')
+            count++;
+
+    for (int i = 0; i <= count; i++)
+    {
+        if (direction[0] == 'F')
+            rotateF(direction);
+        else if (direction[0] == 'R')
+            rotateR(direction);
+        else if (direction[0] == 'U')
+            rotateU(direction);
+        else if (direction[0] == 'B')
+            rotateB(direction);
+        else if (direction[0] == 'L')
+            rotateL(direction);
+        else if (direction[0] == 'D')
+            rotateD(direction);
     }
 }
 
@@ -192,6 +216,8 @@ int main()
         {
             direction = checkDirection(input, index);
             cout << direction << endl;
+            rotateCube(direction);
+            printCube();
         }
     }
 
