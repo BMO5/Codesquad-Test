@@ -177,14 +177,14 @@ string checkDirection(string input, int &index)
     return input.substr(index, 1);
 }
 
-void rotateCube(string direction)
+void rotateCube(string direction, int &count)
 {
-    int count = 0;
+    int repeatNum = 0;
     if (direction.length() == 2)
         if (direction[1] == '2')
-            count++;
+            repeatNum++;
 
-    for (int i = 0; i <= count; i++)
+    for (int i = 0; i <= repeatNum; i++)
     {
         if (direction[0] == 'F')
             rotateF(direction);
@@ -198,6 +198,7 @@ void rotateCube(string direction)
             rotateL(direction);
         else if (direction[0] == 'D')
             rotateD(direction);
+        count++;
     }
 }
 
@@ -206,17 +207,24 @@ int main()
     printCube();
     string input = "";
     string direction = "";
-
+    int count = 0;
     while (1)
     {
         cout << "CUBE> ";
         cin >> input;
 
+        if (input == "Q")
+        {
+            cout << "Á¶ÀÛ°¹¼ö: " << count << endl;
+            cout << "ÀÌ¿ëÇØÁÖ¼Å¼­ °¨»çÇÕ´Ï´Ù. ¶Ñ¶Ñ¶Ñ." << endl;
+            return 0;
+        }
+
         for (int index = 0; index < input.length(); index++)
         {
             direction = checkDirection(input, index);
             cout << direction << endl;
-            rotateCube(direction);
+            rotateCube(direction, count);
             printCube();
         }
     }
