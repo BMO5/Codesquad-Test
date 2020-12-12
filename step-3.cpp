@@ -26,142 +26,268 @@ void printCube()
         cout << "\t" << cubeL[i][0] << " " << cubeL[i][1] << " " << cubeL[i][2] << endl;
 }
 
-void rotateF(string direction)
+void rotateF_cw()
 {
     char temp[3] = {};
-    if (direction == "F")
-        for (int i = 0; i < 3; i++)
-        {
-            temp[i] = cubeU[2][i];
-            cubeU[2][i] = cubeM1[2 - i][2];
-            cubeM1[2 - i][2] = cubeL[0][2 - i];
-            cubeL[0][2 - i] = cubeM3[i][0];
-            cubeM3[i][0] = temp[i];
-        }
-    else
-        for (int i = 0; i < 3; i++)
-        {
-            temp[i] = cubeU[2][i];
-            cubeU[2][i] = cubeM3[i][0];
-            cubeM3[i][0] = cubeL[0][2 - i];
-            cubeL[0][2 - i] = cubeM1[2 - i][2];
-            cubeM1[2 - i][2] = temp[i];
-        }
+
+    for (int i = 0; i < 3; i++)
+    {
+        temp[i] = cubeU[2][i];
+        cubeU[2][i] = cubeM1[2 - i][2];
+        cubeM1[2 - i][2] = cubeL[0][2 - i];
+        cubeL[0][2 - i] = cubeM3[i][0];
+        cubeM3[i][0] = temp[i];
+    }
+    for (int j = 0; j < 2; j++)
+    {
+        temp[j] = cubeM2[0][j];
+        cubeM2[0][j] = cubeM2[2 - j][0];
+        cubeM2[2 - j][0] = cubeM2[2][2 - j];
+        cubeM2[2][2 - j] = cubeM2[j][2];
+        cubeM2[j][2] = temp[j];
+    }
 }
 
-void rotateR(string direction)
+void rotateF_ccw()
 {
     char temp[3] = {};
-    if (direction == "R")
-        for (int i = 0; i < 3; i++)
-        {
-            temp[i] = cubeU[i][2];
-            cubeU[i][2] = cubeM2[i][2];
-            cubeM2[i][2] = cubeL[i][2];
-            cubeL[i][2] = cubeM4[2 - i][0];
-            cubeM4[2 - i][0] = temp[i];
-        }
-    else
-        for (int i = 0; i < 3; i++)
-        {
-            temp[i] = cubeU[i][2];
-            cubeU[i][2] = cubeM4[2 - i][0];
-            cubeM4[2 - i][0] = cubeL[i][2];
-            cubeL[i][2] = cubeM2[i][2];
-            cubeM2[i][2] = temp[i];
-        }
+
+    for (int i = 0; i < 3; i++)
+    {
+        temp[i] = cubeU[2][i];
+        cubeU[2][i] = cubeM3[i][0];
+        cubeM3[i][0] = cubeL[0][2 - i];
+        cubeL[0][2 - i] = cubeM1[2 - i][2];
+        cubeM1[2 - i][2] = temp[i];
+    }
+    for (int j = 0; j < 2; j++)
+    {
+        temp[j] = cubeM2[0][j];
+        cubeM2[0][j] = cubeM2[j][2];
+        cubeM2[j][2] = cubeM2[2][2 - j];
+        cubeM2[2][2 - j] = cubeM2[2 - j][0];
+        cubeM2[2 - j][0] = temp[j];
+    }
 }
 
-void rotateU(string direction)
+void rotateR_cw()
 {
     char temp[3] = {};
-    if (direction == "U")
-        for (int i = 0; i < 3; i++)
-        {
-            temp[i] = cubeM1[0][i];
-            cubeM1[0][i] = cubeM2[0][i];
-            cubeM2[0][i] = cubeM3[0][i];
-            cubeM3[0][i] = cubeM4[0][i];
-            cubeM4[0][i] = temp[i];
-        }
-    else
-        for (int i = 0; i < 3; i++)
-        {
-            temp[i] = cubeM1[0][i];
-            cubeM1[0][i] = cubeM4[0][i];
-            cubeM4[0][i] = cubeM3[0][i];
-            cubeM3[0][i] = cubeM2[0][i];
-            cubeM2[0][i] = temp[i];
-        }
+
+    for (int i = 0; i < 3; i++)
+    {
+        temp[i] = cubeU[i][2];
+        cubeU[i][2] = cubeM2[i][2];
+        cubeM2[i][2] = cubeL[i][2];
+        cubeL[i][2] = cubeM4[2 - i][0];
+        cubeM4[2 - i][0] = temp[i];
+    }
+    for (int j = 0; j < 2; j++)
+    {
+        temp[j] = cubeM3[0][j];
+        cubeM3[0][j] = cubeM3[2 - j][0];
+        cubeM3[2 - j][0] = cubeM3[2][2 - j];
+        cubeM3[2][2 - j] = cubeM3[j][2];
+        cubeM3[j][2] = temp[j];
+    }
 }
 
-void rotateB(string direction)
+void rotateR_ccw()
 {
     char temp[3] = {};
-    if (direction == "B")
-        for (int i = 0; i < 3; i++)
-        {
-            temp[i] = cubeU[0][i];
-            cubeU[0][i] = cubeM3[i][2];
-            cubeM3[i][2] = cubeL[2][2 - i];
-            cubeL[2][2 - i] = cubeM1[2 - i][0];
-            cubeM1[2 - i][0] = temp[i];
-        }
-    else
-        for (int i = 0; i < 3; i++)
-        {
-            temp[i] = cubeU[0][i];
-            cubeU[0][i] = cubeM1[2 - i][0];
-            cubeM1[2 - i][0] = cubeL[2][2 - i];
-            cubeL[2][2 - i] = cubeM3[i][2];
-            cubeM3[i][2] = temp[i];
-        }
+
+    for (int i = 0; i < 3; i++)
+    {
+        temp[i] = cubeU[i][2];
+        cubeU[i][2] = cubeM4[2 - i][0];
+        cubeM4[2 - i][0] = cubeL[i][2];
+        cubeL[i][2] = cubeM2[i][2];
+        cubeM2[i][2] = temp[i];
+    }
+    for (int j = 0; j < 2; j++)
+    {
+        temp[j] = cubeM3[0][j];
+        cubeM3[0][j] = cubeM3[j][2];
+        cubeM3[j][2] = cubeM3[2][2 - j];
+        cubeM3[2][2 - j] = cubeM3[2 - j][0];
+        cubeM3[2 - j][0] = temp[j];
+    }
 }
 
-void rotateL(string direction)
+void rotateU_cw()
 {
     char temp[3] = {};
-    if (direction == "L")
-        for (int i = 0; i < 3; i++)
-        {
-            temp[i] = cubeU[2 - i][0];
-            cubeU[2 - i][0] = cubeM4[i][2];
-            cubeM4[i][2] = cubeL[2 - i][0];
-            cubeL[2 - i][0] = cubeM2[2 - i][0];
-            cubeM2[2 - i][0] = temp[i];
-        }
-    else
-        for (int i = 0; i < 3; i++)
-        {
-            temp[i] = cubeU[2 - i][0];
-            cubeU[2 - i][0] = cubeM2[2 - i][0];
-            cubeM2[2 - i][0] = cubeL[2 - i][0];
-            cubeL[2 - i][0] = cubeM4[i][2];
-            cubeM4[i][2] = temp[i];
-        }
+
+    for (int i = 0; i < 3; i++)
+    {
+        temp[i] = cubeM1[0][i];
+        cubeM1[0][i] = cubeM2[0][i];
+        cubeM2[0][i] = cubeM3[0][i];
+        cubeM3[0][i] = cubeM4[0][i];
+        cubeM4[0][i] = temp[i];
+    }
+    for (int j = 0; j < 2; j++)
+    {
+        temp[j] = cubeU[0][j];
+        cubeU[0][j] = cubeU[2 - j][0];
+        cubeU[2 - j][0] = cubeU[2][2 - j];
+        cubeU[2][2 - j] = cubeU[j][2];
+        cubeU[j][2] = temp[j];
+    }
 }
 
-void rotateD(string direction)
+void rotateU_ccw()
 {
     char temp[3] = {};
-    if (direction == "D")
-        for (int i = 0; i < 3; i++)
-        {
-            temp[i] = cubeM1[2][i];
-            cubeM1[2][i] = cubeM4[2][i];
-            cubeM4[2][i] = cubeM3[2][i];
-            cubeM3[2][i] = cubeM2[2][i];
-            cubeM2[2][i] = temp[i];
-        }
-    else
-        for (int i = 0; i < 3; i++)
-        {
-            temp[i] = cubeM1[2][i];
-            cubeM1[2][i] = cubeM2[2][i];
-            cubeM2[2][i] = cubeM3[2][i];
-            cubeM3[2][i] = cubeM4[2][i];
-            cubeM4[2][i] = temp[i];
-        }
+
+    for (int i = 0; i < 3; i++)
+    {
+        temp[i] = cubeM1[0][i];
+        cubeM1[0][i] = cubeM4[0][i];
+        cubeM4[0][i] = cubeM3[0][i];
+        cubeM3[0][i] = cubeM2[0][i];
+        cubeM2[0][i] = temp[i];
+    }
+    for (int j = 0; j < 2; j++)
+    {
+        temp[j] = cubeU[0][j];
+        cubeU[0][j] = cubeU[j][2];
+        cubeU[j][2] = cubeU[2][2 - j];
+        cubeU[2][2 - j] = cubeU[2 - j][0];
+        cubeU[2 - j][0] = temp[j];
+    }
+}
+
+void rotateB_cw()
+{
+    char temp[3] = {};
+
+    for (int i = 0; i < 3; i++)
+    {
+        temp[i] = cubeU[0][i];
+        cubeU[0][i] = cubeM3[i][2];
+        cubeM3[i][2] = cubeL[2][2 - i];
+        cubeL[2][2 - i] = cubeM1[2 - i][0];
+        cubeM1[2 - i][0] = temp[i];
+    }
+    for (int j = 0; j < 2; j++)
+    {
+        temp[j] = cubeM4[0][j];
+        cubeM4[0][j] = cubeM4[2 - j][0];
+        cubeM4[2 - j][0] = cubeM4[2][2 - j];
+        cubeM4[2][2 - j] = cubeM4[j][2];
+        cubeM4[j][2] = temp[j];
+    }
+}
+
+void rotateB_ccw()
+{
+    char temp[3] = {};
+
+    for (int i = 0; i < 3; i++)
+    {
+        temp[i] = cubeU[0][i];
+        cubeU[0][i] = cubeM1[2 - i][0];
+        cubeM1[2 - i][0] = cubeL[2][2 - i];
+        cubeL[2][2 - i] = cubeM3[i][2];
+        cubeM3[i][2] = temp[i];
+    }
+    for (int j = 0; j < 2; j++)
+    {
+        temp[j] = cubeM4[0][j];
+        cubeM4[0][j] = cubeM4[j][2];
+        cubeM4[j][2] = cubeM4[2][2 - j];
+        cubeM4[2][2 - j] = cubeM4[2 - j][0];
+        cubeM4[2 - j][0] = temp[j];
+    }
+}
+
+void rotateL_cw()
+{
+    char temp[3] = {};
+
+    for (int i = 0; i < 3; i++)
+    {
+        temp[i] = cubeU[2 - i][0];
+        cubeU[2 - i][0] = cubeM4[i][2];
+        cubeM4[i][2] = cubeL[2 - i][0];
+        cubeL[2 - i][0] = cubeM2[2 - i][0];
+        cubeM2[2 - i][0] = temp[i];
+    }
+    for (int j = 0; j < 2; j++)
+    {
+        temp[j] = cubeM1[0][j];
+        cubeM1[0][j] = cubeM1[2 - j][0];
+        cubeM1[2 - j][0] = cubeM1[2][2 - j];
+        cubeM1[2][2 - j] = cubeM1[j][2];
+        cubeM1[j][2] = temp[j];
+    }
+}
+
+void rotateL_ccw()
+{
+    char temp[3] = {};
+
+    for (int i = 0; i < 3; i++)
+    {
+        temp[i] = cubeU[2 - i][0];
+        cubeU[2 - i][0] = cubeM2[2 - i][0];
+        cubeM2[2 - i][0] = cubeL[2 - i][0];
+        cubeL[2 - i][0] = cubeM4[i][2];
+        cubeM4[i][2] = temp[i];
+    }
+    for (int j = 0; j < 2; j++)
+    {
+        temp[j] = cubeM1[0][j];
+        cubeM1[0][j] = cubeM1[j][2];
+        cubeM1[j][2] = cubeM1[2][2 - j];
+        cubeM1[2][2 - j] = cubeM1[2 - j][0];
+        cubeM1[2 - j][0] = temp[j];
+    }
+}
+
+void rotateD_cw()
+{
+    char temp[3] = {};
+
+    for (int i = 0; i < 3; i++)
+    {
+        temp[i] = cubeM1[2][i];
+        cubeM1[2][i] = cubeM4[2][i];
+        cubeM4[2][i] = cubeM3[2][i];
+        cubeM3[2][i] = cubeM2[2][i];
+        cubeM2[2][i] = temp[i];
+    }
+    for (int j = 0; j < 2; j++)
+    {
+        temp[j] = cubeL[0][j];
+        cubeL[0][j] = cubeL[2 - j][0];
+        cubeL[2 - j][0] = cubeL[2][2 - j];
+        cubeL[2][2 - j] = cubeL[j][2];
+        cubeL[j][2] = temp[j];
+    }
+}
+
+void rotateD_ccw()
+{
+    char temp[3] = {};
+
+    for (int i = 0; i < 3; i++)
+    {
+        temp[i] = cubeM1[2][i];
+        cubeM1[2][i] = cubeM2[2][i];
+        cubeM2[2][i] = cubeM3[2][i];
+        cubeM3[2][i] = cubeM4[2][i];
+        cubeM4[2][i] = temp[i];
+    }
+    for (int j = 0; j < 2; j++)
+    {
+        temp[j] = cubeL[0][j];
+        cubeL[0][j] = cubeL[j][2];
+        cubeL[j][2] = cubeL[2][2 - j];
+        cubeL[2][2 - j] = cubeL[2 - j][0];
+        cubeL[2 - j][0] = temp[j];
+    }
 }
 
 string checkDirection(string input, int &index)
@@ -176,28 +302,44 @@ string checkDirection(string input, int &index)
     }
     return input.substr(index, 1);
 }
+////////////////////////////////////////
+void rotateCube_cw(string direction, int &count)
+{
+    if (direction[0] == 'F')
+        rotateF_cw();
+    else if (direction[0] == 'R')
+        rotateR_cw();
+    else if (direction[0] == 'U')
+        rotateU_cw();
+    else if (direction[0] == 'B')
+        rotateB_cw();
+    else if (direction[0] == 'L')
+        rotateL_cw();
+    else if (direction[0] == 'D')
+        rotateD_cw();
+    count++;
+}
 
-void rotateCube(string direction, int &count)
+void rotateCube_ccw(string direction, int &count)
 {
     int repeatNum = 0;
-    if (direction.length() == 2)
-        if (direction[1] == '2')
-            repeatNum++;
+    if (direction[1] == '2')
+        repeatNum++;
 
     for (int i = 0; i <= repeatNum; i++)
     {
         if (direction[0] == 'F')
-            rotateF(direction);
+            rotateF_ccw();
         else if (direction[0] == 'R')
-            rotateR(direction);
+            rotateR_ccw();
         else if (direction[0] == 'U')
-            rotateU(direction);
+            rotateU_ccw();
         else if (direction[0] == 'B')
-            rotateB(direction);
+            rotateB_ccw();
         else if (direction[0] == 'L')
-            rotateL(direction);
+            rotateL_ccw();
         else if (direction[0] == 'D')
-            rotateD(direction);
+            rotateD_ccw();
         count++;
     }
 }
@@ -224,7 +366,10 @@ int main()
         {
             direction = checkDirection(input, index);
             cout << direction << endl;
-            rotateCube(direction, count);
+            if (direction.length() == 1)
+                rotateCube_cw(direction, count);
+            else
+                rotateCube_ccw(direction, count);
             printCube();
         }
     }
