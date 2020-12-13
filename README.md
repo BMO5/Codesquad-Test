@@ -115,7 +115,7 @@ void rotateF_ccw()
 
 ---
 
-## string checkDirection(string int, int &index)
+## string checkDirection(string input, int &index)
 
 ```
 string checkDirection(string input, int &index)
