@@ -2,6 +2,7 @@
 #include <string>
 #include <chrono>
 #include <iomanip>
+#include <random>
 
 using namespace std;
 
@@ -356,6 +357,29 @@ void printTime(chrono::system_clock::time_point startTime)
     cout << setw(2) << setfill('0') << sec.count() << endl;
 }
 
+void shuffleCube()
+{
+    random_device rd;
+    mt19937 gen(rd());
+    uniform_int_distribution<int> dis(0, 5);
+
+    for (int i = 0; i < 100; i++)
+    {
+        if (dis(gen) == 0)
+            rotateF_cw();
+        else if (dis(gen) == 1)
+            rotateR_cw();
+        else if (dis(gen) == 2)
+            rotateU_cw();
+        else if (dis(gen) == 3)
+            rotateB_cw();
+        else if (dis(gen) == 4)
+            rotateL_cw();
+        else if (dis(gen) == 5)
+            rotateD_cw();
+    }
+}
+
 int main()
 {
     chrono::system_clock::time_point startTime = chrono::system_clock::now();
@@ -376,6 +400,15 @@ int main()
             cout << "조작갯수: " << count << endl;
             cout << "이용해주셔서 감사합니다. 뚜뚜뚜." << endl;
             return 0;
+        }
+
+        if (input == "shuffle")
+        {
+            cout << "큐브를 섞습니다." << endl;
+            cout << "잠시만 기다려주세요." << endl;
+            shuffleCube();
+            printCube();
+            continue;
         }
 
         for (int index = 0; index < input.length(); index++)
