@@ -13,12 +13,13 @@ cout << "정수는 -100 <= N < 100 으로 입력해 주세요." << endl;
 }
 ```
 
-정수의 범위를 만족해야 단어를 밀어냅니다.
+단어와 정수를 입력할 때, 정수의 범위를 만족해야 단어를 밀어냅니다.
 
 ---
 
 ```
-    if (direction == 'L' || direction == 'l' || (direction == 'R' && rotate_num < 0) || (direction == 'r' && rotate_num < 0))
+    if (direction == 'L' || direction == 'l' ||
+    (direction == 'R' && rotate_num < 0) || (direction == 'r' && rotate_num < 0))
     {
         rotate_num = abs(rotate_num) % word.length();
         rotate(word.begin(), word.begin() + rotate_num, word.end());
