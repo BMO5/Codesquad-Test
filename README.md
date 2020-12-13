@@ -4,7 +4,7 @@
 
 ---
 
-- cube_print()
+## cube_print()
 
 ```
 void cube_print(char cube_arr[][3])
@@ -19,7 +19,7 @@ void cube_print(char cube_arr[][3])
 
 ---
 
-- U_cw(), U_ccw() …
+## U_cw(), U_ccw() …
 
 ```
 void U_cw(char cube_arr[][3])
@@ -48,7 +48,7 @@ void U_ccw(char cube_arr[][3])
 
 ---
 
-- main()
+## main()
 
 ```
 cout << "CUBE> ";
@@ -67,10 +67,9 @@ cout << "CUBE> ";
             }
 ```
 
-input으로 여러 문자를 입력받게 되면 연속으로 처리하기 위해  
+input으로 여러 문자를 입력받게 되면 연속으로 처리하기 위해
 문자의 길이만큼 반복합니다.  
-여기서 문자가 " 문자 " 인지 " 문자 + ' " 인지 검출을 한 후,  
-str_temp에 넣어줍니다.
+여기서 문자가 " 문자 " 인지 " 문자 + ' " 인지 검출을 한 후, str_temp에 넣어줍니다.
 
 ```
             if (str_temp == "U")
