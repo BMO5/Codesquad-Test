@@ -352,9 +352,11 @@ void printTime(chrono::system_clock::time_point startTime)
     chrono::system_clock::time_point endTime = chrono::system_clock::now();
     chrono::minutes min = chrono::duration_cast<chrono::minutes>(endTime - startTime);
     chrono::seconds sec = chrono::duration_cast<chrono::seconds>(endTime - startTime);
+    int min60 = min.count() % 60;
+    int sec60 = sec.count() % 60;
 
-    cout << "경과시간: " << setw(2) << setfill('0') << min.count() << ":";
-    cout << setw(2) << setfill('0') << sec.count() << endl;
+    cout << "경과시간: " << setw(2) << setfill('0') << min60 << ":";
+    cout << setw(2) << setfill('0') << sec60 << endl;
 }
 
 void shuffleCube()
