@@ -382,21 +382,55 @@ void shuffleCube()
     }
 }
 
+string endFlagCheck(int &index, string input)
+{
+    for (int i = 0; i < 3; i++)
+    {
+        for (int j = 0; j < 3; j++)
+        {
+            if (cubeU[1][1] != cubeU[i][j] || cubeM1[1][1] != cubeM1[i][j] ||
+                cubeM2[1][1] != cubeM2[i][j] || cubeM3[1][1] != cubeM3[i][j] ||
+                cubeM4[1][1] != cubeM4[i][j] || cubeL[1][1] != cubeL[i][j])
+                return "NO";
+        }
+    }
+    index = input.length();
+    return "YES";
+}
+
 int main()
 {
     chrono::system_clock::time_point startTime = chrono::system_clock::now();
 
     string input = "";
     string direction = "";
+    string endFlag = "NO";
     int count = 0;
+
+    cout << "*****************************************************************" << endl;
+    cout << "  알파벳 F, R, U, B, L, D를 입력하면 시계방향으로 회전합니다." << endl;
+    cout << "      알파벳 뒤에 \'를 붙이면 반시계 방향으로 회전합니다." << endl;
+    cout << "      2번 회전하려면 알파벳 뒤에 '2'를 입력하셔도 됩니다." << endl;
+    cout << "    큐브를 무작위로 섞으려면 'shuffle'을 입력하시면 됩니다." << endl;
+    cout << "            종료하시려면 'Q'를 입력하시면 됩니다." << endl;
+    cout << "*****************************************************************" << endl;
 
     printCube();
     while (1)
     {
-        cout << "CUBE> ";
-        cin >> input;
+        if (endFlag == "NO")
+        {
+            cout << "CUBE> ";
+            cin >> input;
+        }
+        else
+        {
+            cout << "*****************************************************************" << endl;
+            cout << "             축하드립니다! 큐브를 완성하셨습니다!" << endl;
+            cout << "*****************************************************************" << endl;
+        }
 
-        if (input == "Q")
+        if (input == "Q" || endFlag == "YES")
         {
             printTime(startTime);
             cout << "조작갯수: " << count << endl;
@@ -422,6 +456,7 @@ int main()
             else
                 rotateCube_ccw(direction, count);
             printCube();
+            endFlag = endFlagCheck(index, input);
         }
     }
 
